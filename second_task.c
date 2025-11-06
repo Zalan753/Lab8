@@ -17,8 +17,39 @@ Modify your function to allocate space for the trimmed string! What is the diffe
 
 
 #include <stdio.h>
+#include <string.h>
+void trim(char str1[], char str2[], int size){
+    char *first = NULL;
+    char *last = NULL;
+    for (int i = 0; i < size; i ++){
+        if (str1[i] != ' '){
+            first = &str1[i];
+            break;
+        }
+    }
+    for (int i = strlen(str1)-1; i >= 0; i-- ){
+        if (str1[i] != ' '){
+            last = &str1[i];
+            break;
+        }
+    }
+    if (first == NULL || last == NULL){
+        str2[0] = '\0';
+    }
+    while(first <= last){
+        *str2 = *first;
+        first++;
+        str2++;
+    }
+    *str2 = '\0';
+    
+}
 
 int main(){
-
+int size = 100;
+char str1[] = "  Mukszik basszameg          ";
+char str2[100];
+trim(str1, str2, size);
+printf("%s\n", str2);
 return 0;
 }
